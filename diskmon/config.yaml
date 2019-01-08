@@ -1,0 +1,15 @@
+---
+disks:
+  - sda
+  - sdb
+  - sdc
+  - sdd
+
+twilio:
+  account_sid: ''
+  auth_token: ''
+  from_number: ""
+  to_number: ""
+
+debug:
+  enabled: true
