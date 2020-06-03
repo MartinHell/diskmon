@@ -35,14 +35,15 @@ for disk in physical_drives():
 
 for disk in config['disks']:
   smart_status = Device('/dev/' + disk)
+  disk_string = 'Disk ' + disk
   print(smart_status.assessment)
   if smart_status.assessment is not None:
     if smart_status.assessment not in 'PASS':
-      print('Disk ' + disk + ' failed smart test')
+      print(disk_string + ' failed smart test')
       sms_body = sms_body + 'Disk ' + disk + ' failed smart test'
   else:
-    print('Disk ' + disk + " doesn't exist")
-    sms_body = sms_body + 'Disk ' + disk + ' not found on system. Could indicate broken disk\n'
+    print(disk_string + " doesn't exist")
+    sms_body = sms_body + disk_string + ' not found on system. Could indicate broken disk\n'
 
 if sms_body and config['debug']['enabled'] is not True:
   send_sms(sms_body)
